@@ -1,16 +1,18 @@
 import React from "react";
+import { Router } from "@reach/router";
 import "./App.css";
 
-function App() {
-  fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
-    .then((res) => res.json())
-    .then((json) => {
-      console.log(json.drinks[0]);
-    });
+import Home from "./pages/Home";
+import Search from "./pages/Search";
 
+function App() {
   return (
     <div className="App">
       <h1>Hello</h1>
+      <Router>
+        <Home path="/" />
+        <Search path="/search" />
+      </Router>
     </div>
   );
 }
