@@ -1,7 +1,6 @@
 import React from "react";
 import SearchField from "../../components/SearchField";
 import SearchResult from "../../components/SearchResult";
-
 import "./search.css";
 
 function Search() {

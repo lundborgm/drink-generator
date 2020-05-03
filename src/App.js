@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="App">
       <Menu />
-      <h1>Hello</h1>
       <Router>
         <Home path="/" />
         <Search path="/search" />
