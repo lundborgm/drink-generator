@@ -17,9 +17,10 @@ function Search() {
 
         if (drinks) {
           setSearchResult(drinks);
-          console.log(drinks);
+          //console.log(drinks);
         } else {
-          console.log("Drink not found");
+          setSearchResult(null);
+          //console.log("Drink not found");
         }
       });
   }, [searchText]);
@@ -43,6 +44,9 @@ function Search() {
               />
             );
           })}
+        {searchResult == null && (
+          <p>No result for "{searchText}". Try again!</p>
+        )}
       </div>
     </div>
   );
