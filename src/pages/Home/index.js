@@ -4,7 +4,9 @@ import SearchResult from "../../components/SearchResult";
 import "./home.css";
 
 function Home() {
-  const [randomDrink, setRandomDrink] = React.useState("");
+  const [randomDrink, setRandomDrink] = React.useState([]);
+
+  let ingredients = [];
 
   function getRandom() {
     fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
@@ -14,7 +16,15 @@ function Home() {
 
         if (drink) {
           setRandomDrink(drink);
-          //console.log(drink);
+
+          for (let index = 1; index < 15; index++) {
+            let key = "strIngredient" + index;
+            const ingredient = drink[0][key];
+
+            ingredients.push(ingredient);
+          }
+
+          console.log(ingredients);
         }
       });
   }
@@ -22,7 +32,7 @@ function Home() {
   return (
     <div className="home-page">
       <h1>This is the home page</h1>
-      <Button handleClick={(e) => getRandom()}>Generate Drink</Button>
+      <Button handleClick={() => getRandom()}>Generate Drink</Button>
       <div className="random-drink">
         {randomDrink &&
           randomDrink.map((drink, key) => {

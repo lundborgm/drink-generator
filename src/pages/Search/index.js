@@ -18,6 +18,8 @@ function Search() {
         if (drinks) {
           setSearchResult(drinks);
           console.log(drinks);
+        } else {
+          console.log("Drink not found");
         }
       });
   }, [searchText]);
