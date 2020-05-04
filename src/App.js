@@ -11,11 +11,13 @@ function App() {
   return (
     <div className="App">
       <Menu />
-      <Router>
-        <Home path="/" />
-        <Search path="/search" />
-        <Single path="/single/:id" />
-      </Router>
+      <div className="content">
+        <Router>
+          <Home path="/" />
+          <Search path="/search" />
+          <Single path="/single/:id" />
+        </Router>
+      </div>
     </div>
   );
 }

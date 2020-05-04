@@ -1,5 +1,4 @@
 import React from "react";
-import "./searchField.css";
 
 const SearchField = (props) => {
   return (

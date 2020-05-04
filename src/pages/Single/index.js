@@ -21,8 +21,17 @@ function Single() {
               return null;
             })
             .filter((item) => item);
-
           drink[0].ingredients = ingredients;
+
+          const measures = Object.keys(drink[0])
+            .map((key) => {
+              if (key.match(/strMeasure/)) {
+                return drink[0][key];
+              }
+              return null;
+            })
+            .filter((item) => item);
+          drink[0].measures = measures;
 
           setSingleDrink(drink);
           console.log(drink);
@@ -41,6 +50,7 @@ function Single() {
               img={drink.strDrinkThumb}
               instructions={drink.strInstructions}
               ingredients={drink.ingredients}
+              measures={drink.measures}
             />
           );
         })}

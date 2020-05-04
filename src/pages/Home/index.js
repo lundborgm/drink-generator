@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@reach/router";
+
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import "./home.css";
@@ -21,25 +21,21 @@ function Home() {
 
   return (
     <div className="home-page">
-      <h1>This is the home page</h1>
       <Button
         handleClick={() => getRandomDrink()}
-        btnText="Generate Drink"
+        btnText="Shake Drink"
       ></Button>
-      <div className="random-drink">
-        {randomDrink &&
-          randomDrink.map((drink, key) => {
-            return (
-              <Link key={key} to={`single/${drink.idDrink}`}>
-                <Card
-                  key={key}
-                  name={drink.strDrink}
-                  img={drink.strDrinkThumb}
-                />
-              </Link>
-            );
-          })}
-      </div>
+      {randomDrink &&
+        randomDrink.map((drink, key) => {
+          return (
+            <Card
+              key={key}
+              name={drink.strDrink}
+              img={drink.strDrinkThumb}
+              id={drink.idDrink}
+            />
+          );
+        })}
     </div>
   );
 }

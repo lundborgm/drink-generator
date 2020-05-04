@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "@reach/router";
 import SearchField from "../../components/SearchField";
 import Card from "../../components/Card";
 import "./search.css";
@@ -38,13 +37,12 @@ function Search() {
           searchText &&
           searchResult.map((drink, key) => {
             return (
-              <Link key={key} to={`/single/${drink.idDrink}`}>
-                <Card
-                  key={key}
-                  name={drink.strDrink}
-                  img={drink.strDrinkThumb}
-                />
-              </Link>
+              <Card
+                key={key}
+                name={drink.strDrink}
+                img={drink.strDrinkThumb}
+                id={drink.idDrink}
+              />
             );
           })}
         {searchResult == null && <p>Ooops... no results for "{searchText}".</p>}
