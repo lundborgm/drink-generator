@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@reach/router";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import "./home.css";
@@ -13,16 +14,6 @@ function Home() {
         const drink = json.drinks;
 
         if (drink) {
-          const ingredients = Object.keys(drink[0])
-            .map((key) => {
-              if (key.match(/strIngredient/)) {
-                return drink[0][key];
-              }
-              return null;
-            })
-            .filter((item) => item);
-
-          drink[0].ingredients = ingredients;
           setRandomDrink(drink);
         }
       });
@@ -39,13 +30,13 @@ function Home() {
         {randomDrink &&
           randomDrink.map((drink, key) => {
             return (
-              <Card
-                key={key}
-                name={drink.strDrink}
-                img={drink.strDrinkThumb}
-                instructions={drink.strInstructions}
-                ingredients={drink.ingredients}
-              />
+              <Link key={key} to={`single/${drink.idDrink}`}>
+                <Card
+                  key={key}
+                  name={drink.strDrink}
+                  img={drink.strDrinkThumb}
+                />
+              </Link>
             );
           })}
       </div>

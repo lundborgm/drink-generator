@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@reach/router";
 import SearchField from "../../components/SearchField";
 import Card from "../../components/Card";
 import "./search.css";
@@ -19,18 +20,6 @@ function Search() {
         const drinks = json.drinks;
 
         if (drinks) {
-          drinks.forEach((drink) => {
-            const ingredients = Object.keys(drink)
-              .map((key) => {
-                if (key.match(/strIngredient/)) {
-                  return drink[key];
-                }
-                return null;
-              })
-              .filter((item) => item);
-            drink.ingredients = ingredients;
-          });
-
           setSearchResult(drinks);
         } else {
           setSearchResult(null);
@@ -49,13 +38,13 @@ function Search() {
           searchText &&
           searchResult.map((drink, key) => {
             return (
-              <Card
-                key={key}
-                name={drink.strDrink}
-                img={drink.strDrinkThumb}
-                instructions={drink.strInstructions}
-                ingredients={drink.ingredients}
-              />
+              <Link key={key} to={`/single/${drink.idDrink}`}>
+                <Card
+                  key={key}
+                  name={drink.strDrink}
+                  img={drink.strDrinkThumb}
+                />
+              </Link>
             );
           })}
         {searchResult == null && <p>Ooops... no results for "{searchText}".</p>}

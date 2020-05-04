@@ -5,6 +5,7 @@ import "./App.css";
 
 import Home from "./pages/Home";
 import Search from "./pages/Search";
+import Single from "./pages/Single";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Router>
         <Home path="/" />
         <Search path="/search" />
+        <Single path="/single/:id" />
       </Router>
     </div>
   );
