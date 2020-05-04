@@ -1,7 +1,16 @@
 import React from "react";
+import styled from "styled-components";
 import SearchField from "../../components/SearchField";
 import Card from "../../components/Card";
-import "./search.css";
+
+const Wrapper = styled.div`
+  width: 100vw;
+  background-color: white;
+  display: flex;
+  jusify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 
 function Search() {
   const [searchResult, setSearchResult] = React.useState([]);
@@ -27,7 +36,7 @@ function Search() {
   }, [searchText]);
 
   return (
-    <div className="search-page">
+    <Wrapper>
       <h1>This is the search page</h1>
       <SearchField
         handleChange={(event) => setSearchText(event.target.value)}
@@ -47,7 +56,7 @@ function Search() {
           })}
         {searchResult == null && <p>Ooops... no results for "{searchText}".</p>}
       </div>
-    </div>
+    </Wrapper>
   );
 }
 export default Search;

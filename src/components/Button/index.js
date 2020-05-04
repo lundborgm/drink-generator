@@ -2,19 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const Btn = styled.button`
-  background-color: pink;
+  background-color: blue;
   color: white;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 10px 20px;
   cursor: pointer;
   border: none;
-  border-radius: 5px;
   outline: none;
+  padding: 10px 15px;
+  font-size: 20px;
+  font-weight: bold;
 `;
 
 const Button = (props) => {
-  return <Btn onClick={props.handleClick}>{props.btnText}</Btn>;
+  return <Btn onClick={props.handleClick}>{props.children}</Btn>;
 };
 
 export default Button;

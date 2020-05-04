@@ -21,7 +21,6 @@ function Single() {
               return null;
             })
             .filter((item) => item);
-          drink[0].ingredients = ingredients;
 
           const measures = Object.keys(drink[0])
             .map((key) => {
@@ -31,10 +30,16 @@ function Single() {
               return null;
             })
             .filter((item) => item);
-          drink[0].measures = measures;
+
+          const result = {};
+          measures.forEach((key, i) => (result[key] = ingredients[i]));
+
+          const drinkInfo = Object.keys(result).map((key, i) => {
+            return `${key} ${result[key]}`;
+          });
+          drink[0].drinkInfo = drinkInfo;
 
           setSingleDrink(drink);
-          console.log(drink);
         }
       });
   }, [id]);
@@ -49,8 +54,7 @@ function Single() {
               name={drink.strDrink}
               img={drink.strDrinkThumb}
               instructions={drink.strInstructions}
-              ingredients={drink.ingredients}
-              measures={drink.measures}
+              drinkInfo={drink.drinkInfo}
             />
           );
         })}

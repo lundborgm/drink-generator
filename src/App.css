@@ -9,6 +9,8 @@
   flex-direction: column;
 }
 
-.content {
-  padding: 10px;
+a,
+a:visited {
+  color: black;
+  text-decoration: none;
 }

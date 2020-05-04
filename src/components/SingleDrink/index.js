@@ -9,15 +9,22 @@ const StyledSingleDrink = styled.div`
     align-items: center;
   }
 
-  h2,
-  h3 {
+  h2 {
     margin-bottom: 10px;
+    font-size: 28px;
+  }
+
+  h3 {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 16px;
   }
 
   img {
     width: 100%;
-    border-radius: 5px;
-    box-shadow: 2px 2px 8px 1px #d4d4d4;
   }
 
   .drink-information-wrapper {
@@ -26,14 +33,10 @@ const StyledSingleDrink = styled.div`
 
   .drink-information {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     margin: 5px 0 25px 0;
   }
 
   .ingredients {
-    border-left: 4px dotted black;
-    padding-left: 10px;
   }
 `;
 
@@ -41,25 +44,20 @@ const SingleDrink = (props) => {
   return (
     <StyledSingleDrink>
       <div className="single-drink-container">
-        <h2>{props.name}</h2>
         <img src={props.img} alt=""></img>
         <div className="drink-information-wrapper">
-          <h3>Ingredients</h3>
+          <h2>{props.name}</h2>
           <div className="drink-information">
-            <div className="measures">
-              {props.measures &&
-                props.measures.map((measure, key) => {
-                  return <p key={key}>{measure}</p>;
-                })}
-            </div>
+            <h3>Ingredients:</h3>
             <div className="ingredients">
-              {props.ingredients &&
-                props.ingredients.map((ingredient, key) => {
-                  return <p key={key}>{ingredient}</p>;
+              {props.drinkInfo &&
+                props.drinkInfo.map((drink, key) => {
+                  return <p key={key}>{drink}</p>;
                 })}
             </div>
+            <h3>Do this:</h3>
+            <p>{props.instructions}</p>
           </div>
-          <p>{props.instructions}</p>
         </div>
       </div>
     </StyledSingleDrink>

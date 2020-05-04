@@ -1,8 +1,16 @@
 import React from "react";
-
+import styled from "styled-components";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
-import "./home.css";
+
+const Wrapper = styled.div`
+  width: 100vw;
+  background-color: white;
+  display: flex;
+  jusify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 
 function Home() {
   const [randomDrink, setRandomDrink] = React.useState([]);
@@ -20,11 +28,8 @@ function Home() {
   }
 
   return (
-    <div className="home-page">
-      <Button
-        handleClick={() => getRandomDrink()}
-        btnText="Shake Drink"
-      ></Button>
+    <Wrapper>
+      <Button handleClick={() => getRandomDrink()}>Get random drink</Button>
       {randomDrink &&
         randomDrink.map((drink, key) => {
           return (
@@ -36,7 +41,7 @@ function Home() {
             />
           );
         })}
-    </div>
+    </Wrapper>
   );
 }
 export default Home;
