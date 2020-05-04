@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledSingleDrink = styled.div`
+  width: 100%;
   .single-drink-container {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
 
   h2 {
@@ -15,7 +15,7 @@ const StyledSingleDrink = styled.div`
   }
 
   h3 {
-    margin-top: 20px;
+    margin: 20px 0 10px 0;
     font-size: 18px;
   }
 
@@ -36,7 +36,8 @@ const StyledSingleDrink = styled.div`
     margin: 5px 0 25px 0;
   }
 
-  .ingredients {
+  .ingredients p {
+    padding: 3px 0;
   }
 `;
 
@@ -48,14 +49,14 @@ const SingleDrink = (props) => {
         <div className="drink-information-wrapper">
           <h2>{props.name}</h2>
           <div className="drink-information">
-            <h3>Ingredients:</h3>
+            <h3>Ingredients</h3>
             <div className="ingredients">
               {props.drinkInfo &&
                 props.drinkInfo.map((drink, key) => {
                   return <p key={key}>{drink}</p>;
                 })}
             </div>
-            <h3>Do this:</h3>
+            <h3>Instructions</h3>
             <p>{props.instructions}</p>
           </div>
         </div>

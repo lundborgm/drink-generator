@@ -5,11 +5,20 @@ import Card from "../../components/Card";
 
 const Wrapper = styled.div`
   width: 100vw;
-  background-color: white;
+  margin-top: 26px;
+
   display: flex;
   jusify-content: center;
   align-items: center;
   flex-direction: column;
+
+  .text-container {
+    padding: 0 20px;
+  }
+
+  .heading {
+    font-size: 32px;
+  }
 `;
 
 function Home() {
@@ -29,7 +38,10 @@ function Home() {
 
   return (
     <Wrapper>
-      <Button handleClick={() => getRandomDrink()}>Get random drink</Button>
+      <div className="text-container">
+        <h3 className="heading">Cocktail generator</h3>
+      </div>
+      <Button handleClick={() => getRandomDrink()}>Randomize</Button>
       {randomDrink &&
         randomDrink.map((drink, key) => {
           return (

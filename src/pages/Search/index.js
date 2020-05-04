@@ -5,7 +5,7 @@ import Card from "../../components/Card";
 
 const Wrapper = styled.div`
   width: 100vw;
-  background-color: white;
+  margin-top: 26px;
   display: flex;
   jusify-content: center;
   align-items: center;
@@ -37,7 +37,6 @@ function Search() {
 
   return (
     <Wrapper>
-      <h1>This is the search page</h1>
       <SearchField
         handleChange={(event) => setSearchText(event.target.value)}
       />

@@ -6,24 +6,20 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faGlassCheers } from "@fortawesome/free-solid-svg-icons";
 
 const StyledMenu = styled.nav`
+  background-color: #c8c0d1;
+  margin-bottom: -1px;
+
   ul {
     position: relative;
     display: flex;
     justify-content: space-between;
     list-style: none;
-    font-size: 34px;
+    font-size: 30px;
     padding: 0 20px;
   }
 
   li {
     margin: 10px;
-  }
-
-  .go-back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    order: -1;
   }
 `;
 
@@ -33,12 +29,12 @@ const Menu = (props) => {
       <ul>
         <li>
           <Link to="/">
-            <FontAwesomeIcon icon={faGlassCheers} />
+            <FontAwesomeIcon icon={faGlassCheers} color="#FFFF" />
           </Link>
         </li>
         <li>
           <Link to="/search">
-            <FontAwesomeIcon icon={faSearch} />
+            <FontAwesomeIcon icon={faSearch} color="#FFFF" />
           </Link>
         </li>
       </ul>
