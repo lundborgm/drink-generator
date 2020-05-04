@@ -1,42 +1,30 @@
 import React from "react";
 import Button from "../../components/Button";
-import SearchResult from "../../components/SearchResult";
+import Card from "../../components/Card";
 import "./home.css";
 
 function Home() {
   const [randomDrink, setRandomDrink] = React.useState([]);
-  const [testArray, setTestArray] = React.useState([]);
 
   function getRandomDrink() {
     fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
       .then((res) => res.json())
       .then((json) => {
         const drink = json.drinks;
-        let ingredients = [];
-
-        for (let index = 1; index < 15; index++) {
-          let key = "strIngredient" + index;
-          const ingredient = drink[0][key];
-
-          ingredients.push(ingredient);
-        }
 
         if (drink) {
+          const ingredients = Object.keys(drink[0])
+            .map((key) => {
+              if (key.match(/strIngredient/)) {
+                return drink[0][key];
+              }
+              return null;
+            })
+            .filter((item) => item);
+
+          drink[0].ingredients = ingredients;
           setRandomDrink(drink);
-          setTestArray(ingredients);
-
-          //   for (let index = 1; index < 15; index++) {
-          //     let key = "strIngredient" + index;
-          //     const ingredient = drink[0][key];
-
-          //     ingredients.push(ingredient);
-          //   }
-
-          //setTestArray(ingredients);
-
-          //console.log(ingredients);
         }
-        console.log(ingredients);
       });
   }
 
@@ -51,19 +39,14 @@ function Home() {
         {randomDrink &&
           randomDrink.map((drink, key) => {
             return (
-              <SearchResult
+              <Card
                 key={key}
                 name={drink.strDrink}
                 img={drink.strDrinkThumb}
                 instructions={drink.strInstructions}
+                ingredients={drink.ingredients}
               />
             );
-          })}
-      </div>
-      <div>
-        {testArray &&
-          testArray.map((test, key) => {
-            return <p key={key}>{test}</p>;
           })}
       </div>
     </div>

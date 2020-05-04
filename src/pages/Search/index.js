@@ -1,6 +1,6 @@
 import React from "react";
 import SearchField from "../../components/SearchField";
-import SearchResult from "../../components/SearchResult";
+import Card from "../../components/Card";
 import "./search.css";
 
 function Search() {
@@ -8,6 +8,9 @@ function Search() {
   const [searchText, setSearchText] = React.useState("");
 
   React.useEffect(() => {
+    if (!searchText) {
+      return;
+    }
     fetch(
       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchText}`
     )
@@ -16,11 +19,21 @@ function Search() {
         const drinks = json.drinks;
 
         if (drinks) {
+          drinks.forEach((drink) => {
+            const ingredients = Object.keys(drink)
+              .map((key) => {
+                if (key.match(/strIngredient/)) {
+                  return drink[key];
+                }
+                return null;
+              })
+              .filter((item) => item);
+            drink.ingredients = ingredients;
+          });
+
           setSearchResult(drinks);
-          //console.log(drinks);
         } else {
           setSearchResult(null);
-          //console.log("Drink not found");
         }
       });
   }, [searchText]);
@@ -36,17 +49,16 @@ function Search() {
           searchText &&
           searchResult.map((drink, key) => {
             return (
-              <SearchResult
+              <Card
                 key={key}
                 name={drink.strDrink}
                 img={drink.strDrinkThumb}
                 instructions={drink.strInstructions}
+                ingredients={drink.ingredients}
               />
             );
           })}
-        {searchResult == null && (
-          <p>No result for "{searchText}". Try again!</p>
-        )}
+        {searchResult == null && <p>Ooops... no results for "{searchText}".</p>}
       </div>
     </div>
   );
